@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root "welcome#index"
   resources :restaurants
-  get "/shopping_list/:id" => "home#shopping_list"
+  get "/list/:id" => "home#list"
+  get "/show_menu/:id" => "home#show_menu"
+  get "/order/:id" => "home#order"
 end

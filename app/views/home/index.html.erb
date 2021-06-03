@@ -1,6 +1,6 @@
 <h1>Shoppings</h1>
 <% @shoppings.each do |shopping| %>
   <div class="shopping">
-    <p><%= link_to shopping.name, "/shopping_list/#{shopping.id}" %></p>
+    <p><h2><%= link_to shopping.name, "/list/#{shopping.id}" %></h2></p>
   </div>
 <% end %>

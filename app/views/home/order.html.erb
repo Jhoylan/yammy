@@ -1,0 +1,6 @@
+<% (@menu.split ",").each do |dish| %>
+  <% temp = dish.split "/" %>
+  <% dish_name = temp[0] %>
+  <% dish_price = temp[1] %>
+  <h2><%= dish_name %>:<%= dish_price %></h2>
+<% end %>
