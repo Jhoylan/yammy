@@ -1,0 +1,6 @@
+<h1>Shoppings</h1>
+<% @shoppings.each do |shopping| %>
+  <div class="shopping">
+    <p><%= link_to shopping.name, "/shopping_list/#{shopping.id}" %></p>
+  </div>
+<% end %>

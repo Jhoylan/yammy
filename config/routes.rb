@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  root "restaurants#index"
-  
-  get "/login" => "restaurants#login"
-  get "/shopping/:id" => "restaurants#shopping_restaurants"
-  post "/restaurants/new" => "restaurants#new"
-  post "/restaurants/all" => "restaurants#all"
-  get "/restaurants/all" => "restaurants#index"
-
-  resources :restaurants  
+  get 'home/index'
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  root "welcome#index"
+  resources :restaurants
+  get "/shopping_list/:id" => "home#shopping_list"
 end
