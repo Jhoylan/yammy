@@ -21,4 +21,9 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Débito Técnico
+<ul> 
+  <li> Corrigir valor negativo na url </li>
+  <li> Restrição de quantidade </li>
+  <li> App: Confirmação entre delivery e presencial </li>
+</ul>

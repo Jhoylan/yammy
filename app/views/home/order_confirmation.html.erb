@@ -1,0 +1,5 @@
+<h1> Confirme seu pedido </h1>
+<% @order.each_with_index do |dish, index| %>
+  <h2><%= (dish.split "/")[0] %> R$<%= (dish.split "/")[1] %> Quantidade: <%= @order_qtt[index] %></h2>
+<% end %>
+<h2> Total: R$<%= @total.round(2) %> </h2>

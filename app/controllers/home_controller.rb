@@ -38,4 +38,20 @@ class HomeController < ApplicationController
       render :error
     end
   end
+
+  def order_confirmation
+    menu = Restaurant.find(params[:restaurant_id]).menu.split ","
+    qtts = params[:order_qtt].split "_"
+    @order = []
+    @order_qtt = []
+    @total = 0
+    
+    qtts.each_with_index do |qtt, index|
+      if qtt.to_i > 0
+        @order.push(menu[index])
+        @order_qtt.push(qtt)
+        @total += qtt.to_f * ((menu[index].split "/")[1]).to_f
+      end
+    end
+  end
 end

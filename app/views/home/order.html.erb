@@ -1,4 +1,5 @@
 <% total = 0 %>
+<% order_qtt = 0 %>
 
 <% (@menu.split ",").each_with_index do |dish, dish_number| %>
   <% temp = dish.split "/" %>
@@ -12,6 +13,8 @@
   </h2>
 
   <% total += dish_price.to_f * @qtts[dish_number].to_f %>
+  <% order_qtt = qtts %>
 <% end %>
 
 <h2>O total é R$<%= total.round(2) %></h2>
+<h2> <%= link_to "Efetuar pedido", "/order_confirmation/#{@restaurant_id}/#{order_qtt}" %> </h2>
