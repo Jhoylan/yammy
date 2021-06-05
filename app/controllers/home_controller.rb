@@ -29,14 +29,13 @@ class HomeController < ApplicationController
     qtts = params[:qtts].split "_"
     qtt = qtts[params[:dish_number].to_i].to_i 
     
-    if ((@menu.split ",").size == qtts.size) && (qtt >= 0 && qtt < 100)
+    if ((@menu.split ",").size == qtts.size) && (qtt >= 0 && qtt < 100) 
       qtts[params[:dish_number].to_i] = qtts[params[:dish_number].to_i].to_i + 1 if params[:op] == "+"
       qtts[params[:dish_number].to_i] = qtts[params[:dish_number].to_i].to_i - 1 if params[:op] == "-" && qtts[params[:dish_number].to_i].to_i > 0
       
       @qtts = qtts
       @restaurant_id = params[:restaurant_id]
-      render :order
-    
+      render :order    
     else
       render :invalid_qtt
     end
@@ -52,13 +51,15 @@ class HomeController < ApplicationController
     @total = 0
     
     qtts.each_with_index do |qtt, index|
-      if qtt.to_i > 0 && qtt.to_i < 100
+      if qtt.to_i > 0 
         @order.push(menu[index])
         @order_qtt.push(qtt)
         @total += qtt.to_f * ((menu[index].split "/")[1]).to_f
-      else
-        qtt_is_valid = false
       end
+      
+      if qtt.to_i < 0 || qtt.to_i > 100    
+        qtt_is_valid = false  
+      end   
     end
 
     render :invalid_qtt if !qtt_is_valid
