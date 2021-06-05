@@ -24,12 +24,18 @@ class HomeController < ApplicationController
   end
 
   def qtt
-    qtts = params[:qtts].split "_"
-    qtts[params[:dish_number].to_i] = qtts[params[:dish_number].to_i].to_i + 1 if params[:op] == "+"
-    qtts[params[:dish_number].to_i] = qtts[params[:dish_number].to_i].to_i - 1 if params[:op] == "-" && qtts[params[:dish_number].to_i].to_i > 0
     @menu = Restaurant.find(params[:restaurant_id]).menu
-    @qtts = qtts
-    @restaurant_id = params[:restaurant_id]
-    render :order
+    qtts = params[:qtts].split "_"
+    
+    if (@menu.split ",").size == qtts.size
+      qtts[params[:dish_number].to_i] = qtts[params[:dish_number].to_i].to_i + 1 if params[:op] == "+"
+      qtts[params[:dish_number].to_i] = qtts[params[:dish_number].to_i].to_i - 1 if params[:op] == "-" && qtts[params[:dish_number].to_i].to_i > 0
+      
+      @qtts = qtts
+      @restaurant_id = params[:restaurant_id]
+      render :order  
+    else
+      render :error
+    end
   end
 end
