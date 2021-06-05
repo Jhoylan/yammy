@@ -1,6 +1,17 @@
-<% (@menu.split ",").each do |dish| %>
+<% total = 0 %>
+
+<% (@menu.split ",").each_with_index do |dish, dish_number| %>
   <% temp = dish.split "/" %>
   <% dish_name = temp[0] %>
   <% dish_price = temp[1] %>
-  <h2><%= dish_name %>:<%= dish_price %></h2>
+  
+  <h2><%= dish_name %>: <%= dish_price %> | Quantidade: <%= @qtts[dish_number] %>
+    <% qtts = @qtts.join("_") %>
+    <%= link_to "Mais", "/qtt/+/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
+    <%= link_to "Menos", "/qtt/-/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
+  </h2>
+
+  <% total += dish_price.to_f * @qtts[dish_number].to_f %>
 <% end %>
+
+<h2>O total é R$<%= total.round(2) %></h2>

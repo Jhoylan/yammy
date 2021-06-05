@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/list/:id" => "home#list"
   get "/show_menu/:id" => "home#show_menu"
   get "/order/:id" => "home#order"
+  get "/qtt/:op/:dish_number/:qtts/:restaurant_id" => "home#qtt"
 end
