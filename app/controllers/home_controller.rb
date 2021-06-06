@@ -59,7 +59,7 @@ class HomeController < ApplicationController
         @total += qtt.to_f * ((menu[index].split "/")[1]).to_f
       end
       
-      if qtt.to_i < 0 || qtt.to_i > 100 || (is_a_number qtt)
+      if qtt.to_i < 0 || qtt.to_i > 100 || !(is_a_number qtt)
         qtt_is_valid = false  
       end   
     end
