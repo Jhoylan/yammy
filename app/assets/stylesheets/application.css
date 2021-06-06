@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+.navigation{
+  display: table;
+}
+
+.navigation_bar{
+  display: table-row;
+}
+
+.navigation_buttons{
+  display: table-cell;
+  width: 295px;
+}
+
+#home{
+  width: 120px;
+}
+
+#shoppings{
+  width: 295px;
+}

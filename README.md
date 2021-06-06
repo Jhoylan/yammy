@@ -23,6 +23,6 @@ Things you may want to cover:
 
 * Débitos Técnico
 <ul>
-  <li> Criar uma barra de navegação </li>
+  <li> Ajustar alinhamentos de imagens </li>
   <li> App: Confirmação entre delivery e presencial </li>
 </ul>

@@ -1,3 +1,10 @@
+<nav class="navigation">
+  <div class="navigation_bar">
+    <div class="navigation_buttons" id="home"><h1><%= link_to "Home", root_path %></h1></div>
+    <div class="navigation_buttons" id="shoppings"><h1><%= link_to "Lista de Shoppings", home_index_path %></h1></div>
+  </div>
+</nav>
+
 <h1> Confirme seu pedido </h1>
 <% @order.each_with_index do |dish, index| %>
   <h2><%= (dish.split "/")[0] %> R$<%= (dish.split "/")[1] %> Quantidade: <%= @order_qtt[index] %></h2>
