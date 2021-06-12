@@ -55,7 +55,7 @@ class HomeController < ApplicationController
     @total = 0
     
     qtts.each_with_index do |qtt, index|
-      if qtt.to_i > 0 
+      if qtt.to_i > 0
         @order.push(menu[index])
         @order_qtt.push(qtt)
         @total += qtt.to_f * ((menu[index].split "/")[1]).to_f

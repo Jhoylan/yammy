@@ -1,0 +1,14 @@
+<h1> Pedidos de Hoje </h1>
+
+<% @today_orders.each do |order| %>
+  <h2><%= Restaurant.find(order.restaurant.to_i).name %> do <%= Restaurant.find(order.restaurant.to_i).Shopping.name %></h2>
+  
+  <% order.order_info.each do |fill| %>
+    <% dish = fill[0] %>
+    <% price = fill[1] %>
+    <% qtt = fill[2] %>
+    <h2> Prato: <%= dish %>, Preço: <%= price %> | Quantidade: <%= qtt %>
+      <%= link_to "Excluir pedido", order_path(order), method: :delete, data:{confirm: "Quer realmente deletar esse pedido?"} %>
+    </h2>
+  <% end %>
+<% end %>

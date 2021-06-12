@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_021403) do
+ActiveRecord::Schema.define(version: 2021_06_12_143049) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 2021_06_12_021403) do
     t.string "order_info"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.string "restaurant"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -98,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_021403) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "Shoppings"
   add_foreign_key "token_authenticate_me_invites", "token_authenticate_me_users", column: "creator_id"
   add_foreign_key "token_authenticate_me_sessions", "token_authenticate_me_users", column: "user_id"

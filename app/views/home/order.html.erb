@@ -8,6 +8,10 @@
 <% total = 0 %>
 <% order_qtt = 0 %>
 
+<% if @to_show_msg %>
+  <%= @msg %>
+<% end %>
+
 <% (@menu.split ",").each_with_index do |dish, dish_number| %>
   <% temp = dish.split "/" %>
   <% dish_name = temp[0] %>
@@ -24,4 +28,4 @@
 <% end %>
 
 <h2>O total é R$<%= total.round(2) %></h2>
-<h2> <%= link_to "Adicionar ao carrinho", "/cart/#{@restaurant_id}/#{order_qtt}" %> </h2>
+<h2> <%= link_to "Adicionar ao carrinho", "/#{@restaurant_id}/#{order_qtt}" %> </h2>
