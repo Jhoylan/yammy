@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @shoppings = Shopping.all
   end
@@ -43,7 +45,7 @@ class HomeController < ApplicationController
     end
   end
 
-  def order_confirmation
+  def cart
     menu = Restaurant.find(params[:restaurant_id]).menu.split ","
     qtts = params[:order_qtt].split "_"
     qtt_is_valid = true
@@ -63,7 +65,7 @@ class HomeController < ApplicationController
         qtt_is_valid = false  
       end   
     end
-
+    
     render :invalid_qtt if !qtt_is_valid
   end
 

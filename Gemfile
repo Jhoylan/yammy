@@ -55,9 +55,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Authentication
+gem 'token_authenticate_me', '~> 0.11.2'
+gem 'api_me', '~> 0.14.1'
+gem 'pundit', '~> 1.0'
+
 # Admin Tools
 gem 'activeadmin'
 gem 'devise'
 gem 'cancancan'
 gem 'draper'
-gem 'pundit'

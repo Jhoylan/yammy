@@ -24,4 +24,4 @@
 <% end %>
 
 <h2>O total é R$<%= total.round(2) %></h2>
-<h2> <%= link_to "Efetuar pedido", "/order_confirmation/#{@restaurant_id}/#{order_qtt}" %> </h2>
+<h2> <%= link_to "Adicionar ao carrinho", "/cart/#{@restaurant_id}/#{order_qtt}" %> </h2>
