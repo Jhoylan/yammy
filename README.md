@@ -23,7 +23,6 @@ Things you may want to cover:
 
 * Débitos Técnico
 <ul>
-  <li> Resolver o bug dos pedidos </li>
   <li> Histórico de pedidos </li>
   <li> Nota fiscal </li>
   <li> Ajustar alinhamentos de imagens </li>

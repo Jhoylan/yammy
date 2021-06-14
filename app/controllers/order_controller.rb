@@ -6,6 +6,7 @@ class OrderController < ApplicationController
 
   def create
     @menu = Restaurant.find(params[:restaurant_id]).menu
+    @restaurant_id = params[:restaurant_id]
     @qtts = (params[:order_qtt]).split "_"
     order_info = []
     menu = @menu.split ","
