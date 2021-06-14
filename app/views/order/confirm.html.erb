@@ -1,0 +1,19 @@
+<h1>Insira seus dados</h1>
+
+<%= form_with url: "/bill" do |f| %>
+  <h2>Nome do titular: </h2>
+  <%= text_field(:name, :field) %>
+  <h2>CPF: </h2>
+  <%= text_field(:user_id, :field) %>
+  <h2>Número do cartão: </h2>
+  <%= text_field(:card_num, :field) %>
+  <h2>Data de Expiração: </h2>
+  <% date = Time.now %>
+  <%= date_field(:exp_date, :date, min: "#{date.year}-#{date.month}-#{date.day}")%>
+  <h2>CSV: </h2>
+  <%= text_field(:csv, :field) %>
+  <br>
+  <h2>O total é de R$<%= @total %></h2>
+  <%= f.submit "Pagar" %>
+  
+<% end %>

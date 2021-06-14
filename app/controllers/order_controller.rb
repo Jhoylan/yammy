@@ -1,12 +1,7 @@
 class OrderController < ApplicationController
-  def index
-    today = Time.now.day
-    all_orders = Order.where(user_id: current_user.id)
-    @today_orders = []
+  before_action :get_today_open_orders, only: %i[index confirm bill]
 
-    all_orders.each do |order|
-      @today_orders.push order if order.created_at.day == today
-    end
+  def index
   end
 
   def create
@@ -31,7 +26,8 @@ class OrderController < ApplicationController
 
     order = Order.new(order_info: order_info,
                       user_id: current_user.id,
-                      restaurant: params[:restaurant_id])
+                      restaurant: params[:restaurant_id],
+                      open: true)
     
     if order.save && qtt_is_valid
       @msg = "Pedido enviado ao carrinho."
@@ -43,7 +39,18 @@ class OrderController < ApplicationController
   end
 
   def confirm
+    @total = 0
+    @today_open_orders.each do |order|
+      order.order_info.each do |cost|
+        @total += cost[1].to_f * cost[2].to_f
+      end
+    end
+  end
 
+  def bill
+    @today_open_orders.each do |order|
+      order.update(open: false)
+    end
   end
 
   def destroy
@@ -52,6 +59,16 @@ class OrderController < ApplicationController
   end
 
   private
+  def get_today_open_orders
+    today = Time.now.day
+    all_orders = Order.where(user_id: current_user.id, open: true)
+    @today_open_orders = []
+
+    all_orders.each do |order|
+      @today_open_orders.push order if order.created_at.day == today
+    end
+  end
+
   def is_a_number string
     return true if string.to_i.to_s == string
     return false
