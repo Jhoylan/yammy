@@ -45,30 +45,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def cart
-    menu = Restaurant.find(params[:restaurant_id]).menu.split ","
-    qtts = params[:order_qtt].split "_"
-    qtt_is_valid = true
-    @id = params[:restaurant_id]
-    @order = []
-    @order_qtt = []
-    @total = 0
-    
-    qtts.each_with_index do |qtt, index|
-      if qtt.to_i > 0
-        @order.push(menu[index])
-        @order_qtt.push(qtt)
-        @total += qtt.to_f * ((menu[index].split "/")[1]).to_f
-      end
-      
-      if qtt.to_i < 0 || qtt.to_i > 100 || !(is_a_number qtt)
-        qtt_is_valid = false  
-      end   
-    end
-    
-    render :invalid_qtt if !qtt_is_valid
-  end
-
   private
   def is_a_number string
     return true if string.to_i.to_s == string

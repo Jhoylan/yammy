@@ -1,7 +1,7 @@
 class OrderController < ApplicationController
   def index
     today = Time.now.day
-    all_orders = Order.where(user_id: params[:id])
+    all_orders = Order.where(user_id: current_user.id)
     @today_orders = []
 
     all_orders.each do |order|
@@ -40,6 +40,10 @@ class OrderController < ApplicationController
     end
 
     render "home/order"
+  end
+
+  def confirm
+
   end
 
   def destroy
