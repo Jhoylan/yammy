@@ -2,6 +2,10 @@ class OrderController < ApplicationController
   before_action :get_today_open_orders, only: %i[index confirm bill]
 
   def index
+    @shipping = get_shipping
+    @missing_orders_to_discount = 5 - (Order.where(open: false).size % 5)
+    @discount = get_discount
+    destroy_old_orders
   end
 
   def create
@@ -41,11 +45,15 @@ class OrderController < ApplicationController
 
   def confirm
     @total = 0
+       
     @today_open_orders.each do |order|
       order.order_info.each do |cost|
         @total += cost[1].to_f * cost[2].to_f
       end
     end
+
+    @total -= @total * get_discount if (Order.where(open: false).size % 5) == 0
+    @total += get_shipping
   end
 
   def bill
@@ -69,6 +77,12 @@ class OrderController < ApplicationController
   end
 
   private
+  def destroy_old_orders
+    Order.where(user_id: current_user.id, open: true).each do |order|
+      order.destroy if order.created_at.before? (Date.new(Time.now.year, Time.now.month, Time.now.day))
+    end
+  end
+
   def destroy id
     Order.find(id).destroy
   end
@@ -81,6 +95,14 @@ class OrderController < ApplicationController
     all_orders.each do |order|
       @today_open_orders.push order if order.created_at.day == today
     end
+  end
+
+  def get_discount
+    return 0.2
+  end
+
+  def get_shipping
+    return 10
   end
 
   def is_a_number string
