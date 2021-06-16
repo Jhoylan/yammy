@@ -65,3 +65,6 @@ gem 'activeadmin'
 gem 'devise'
 gem 'cancancan'
 gem 'draper'
+
+#Windows Gem
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?

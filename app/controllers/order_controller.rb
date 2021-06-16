@@ -56,7 +56,7 @@ class OrderController < ApplicationController
 
   def destroy
     Order.find(params[:id]).destroy
-    redirect_to "/order/index/#{current_user.id}"
+    redirect_to order_index_path
   end
 
   private
