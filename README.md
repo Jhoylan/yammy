@@ -23,9 +23,7 @@ Things you may want to cover:
 
 * Débitos Técnicos
 <ul>
-  <li> Abrir finalização somente se o total for maior que 0 </li>
   <li> Frete </li>
-  <li> Excluir um prato </li>
   <li> $Desconto </li>
   <li> @Desconto </li>
   <li> Histórico de pedidos </li>

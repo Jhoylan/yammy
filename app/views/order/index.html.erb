@@ -17,5 +17,11 @@
 <% end %>
 
 <br>
-<h2>O total é de R$<%= total %></h2>
-<div><h2><%= link_to "Finalizar Pedido(s)", "/order/confirm" %></h2></div>
+
+<% if total > 0 %>
+  <h2>O total é de R$<%= total %></h2>
+  <div><h2><%= link_to "Finalizar Pedido(s)", "/order/confirm" %></h2></div>
+<% else %>
+  <h2>Você não realizou um pedido ainda.</h2>
+  <h2><%= link_to "Ver Shoppings", home_index_path %></h2>
+<% end %>
