@@ -54,12 +54,25 @@ class OrderController < ApplicationController
     end
   end
 
-  def destroy
-    Order.find(params[:id]).destroy
+  def update
+    order = Order.find(params[:id])
+    order_info = order.order_info
+    
+    return redirect_to order_index_path unless is_a_valid_index params[:index], order_info.size
+    
+    order_info.delete_at(params[:index].to_i)
+    order.update(order_info: order_info)
+    
+    destroy params[:id] if order_info.size == 0
+
     redirect_to order_index_path
   end
 
   private
+  def destroy id
+    Order.find(id).destroy
+  end
+
   def get_today_open_orders
     today = Time.now.day
     all_orders = Order.where(user_id: current_user.id, open: true)
@@ -73,5 +86,9 @@ class OrderController < ApplicationController
   def is_a_number string
     return true if string.to_i.to_s == string
     return false
+  end
+
+  def is_a_valid_index index, size
+    (is_a_number index) && index.to_i >= 0 && index.to_i < size
   end
 end

@@ -5,16 +5,17 @@
 <% @today_open_orders.each do |order| %>
   <h2><%= Restaurant.find(order.restaurant.to_i).name %> do <%= Restaurant.find(order.restaurant.to_i).Shopping.name %></h2>
   
-  <% order.order_info.each do |fill| %>
-    <% dish = fill[0] %>
-    <% price = fill[1] %>
-    <% qtt = fill[2] %>
+  <% order.order_info.each_with_index do |info, index| %>
+    <% dish = info[0] %>
+    <% price = info[1] %>
+    <% qtt = info[2] %>
     <% total += price.to_f * qtt.to_f %>
     <h2> Prato: <%= dish %>, Preço: <%= price %> | Quantidade: <%= qtt %>
-      <%= link_to "Excluir pedido", order_path(order), method: :delete, data:{confirm: "Quer realmente deletar esse pedido?"} %>
+      <%= link_to "Excluir", "/order/#{order.id}/#{index}", data:{confirm: "Gostaria de remover esse prato?"} %>
     </h2>
   <% end %>
 <% end %>
+
 <br>
 <h2>O total é de R$<%= total %></h2>
 <div><h2><%= link_to "Finalizar Pedido(s)", "/order/confirm" %></h2></div>

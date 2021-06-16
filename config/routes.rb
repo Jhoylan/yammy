@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :restaurants
   get "/order/index" => "order#index"
   get "/order/confirm" => "order#confirm"
+  get "/order/:id/:index" => "order#update"
   resources :order
   get "/list/:id" => "home#list"
   get "/show_menu/:id" => "home#show_menu"
