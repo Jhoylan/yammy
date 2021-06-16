@@ -23,7 +23,6 @@ Things you may want to cover:
 
 * Débitos Técnicos
 <ul>
-  <li> Frete </li>
   <li> $Desconto </li>
   <li> @Desconto </li>
   <li> Histórico de pedidos </li>
