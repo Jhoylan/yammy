@@ -8,13 +8,22 @@ class OrderController < ApplicationController
   end
 
   def create
+    
     destroy_old_orders
 
     @menu = Restaurant.find(params[:restaurant_id]).menu
     @restaurant_id = params[:restaurant_id]
     @qtts = (params[:order_qtt]).split "_"
+
+    order_is_blank = @qtts.all? "0"
+
+    if order_is_blank
+      @qtts.map! {|qtt| qtt.to_i }
+      return render "home/order"
+    end
+
     @to_show_msg = true
-    
+        
     order_info = []
     menu = @menu.split ","
     qtt_is_valid = true
@@ -36,6 +45,7 @@ class OrderController < ApplicationController
                       restaurant: params[:restaurant_id],
                       open: true)
     
+
     if order.save && qtt_is_valid
       @msg = "Pedido enviado ao carrinho."
     else

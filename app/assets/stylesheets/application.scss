@@ -50,10 +50,16 @@ body{
   color: aliceblue;
 }
 
+//welcom
 #welcome-content{
   text-align: center;
 }
 
+.welcome-text{
+  font-size: 20px;
+  color: #0d6efd;
+  font-weight: bold;
+}
 // navbar when user isn't logged
 #login-button{
   font-size: 20px;
@@ -199,4 +205,16 @@ body{
 
 .make-order-button{
   text-align: center;
+}
+
+//signup
+.signup-labels{
+  font-size: 20px;
+  color: #0d6efd;
+  font-weight: bold;
+}
+
+#subscribe-signup{
+  color: #090380;
+  font-weight: bold;
 }
