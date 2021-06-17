@@ -18,7 +18,7 @@
       <th>Prato</th>
       <th>Preço</th>
       <th>Quantidade</th>
-      <th>Excluir</th>
+      <th>Remover</th>
     </thead>
     <tbody>
       
@@ -31,8 +31,8 @@
           <tr>
             <td><%= dish %></td>
             <td><%= price %></td>
-            <td><%= qtt %></td>
-            <td class="op-button" ><a href=<%=minus%> data-confirm="Gostaria de remover esse prato?"><%= fa_icon "minus", id: "minus" %></td>
+            <td id="quantity-cart"><%= qtt %></td>
+            <td class="op-button" id="minus-cart"><a href=<%=minus%> data-confirm="Gostaria de remover esse prato?"><%= fa_icon "minus", id: "minus" %></td>
           </tr>
         <% end %>         
 
@@ -57,5 +57,5 @@
   <div><h2 class="footer-cart-messages"><%= link_to "Finalizar Pedido(s)", "/order/confirm", class: "btn btn-primary" %></h2></div>
 <% else %>
   <h2 class="footer-cart-messages">Você não realizou um pedido ainda.</h2>
-  <h2><%= link_to "Fazer um pedido", home_index_path %></h2>
+  <div class="make-order-button"><h2><%= link_to "Fazer um pedido", home_index_path, class: "btn btn-primary" %></h2></div>
 <% end %>

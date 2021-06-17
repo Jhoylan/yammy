@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   get "/home/order/:id" => "home#order"
   get "/qtt/:op/:dish_number/:qtts/:restaurant_id" => "home#qtt"
   get "/:restaurant_id/:order_qtt" => "order#create"
+  get "/bill" => "order#bill"
   post "/bill" => "order#bill"
 end

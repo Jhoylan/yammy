@@ -1,19 +1,33 @@
 <h1>Insira seus dados</h1>
 
 <%= form_with url: "/bill" do |f| %>
-  <h2>Nome do titular: </h2>
-  <%= text_field(:name, :field) %>
-  <h2>CPF: </h2>
-  <%= text_field(:user_id, :field) %>
-  <h2>Número do cartão: </h2>
-  <%= text_field(:card_num, :field) %>
-  <h2>Data de Expiração: </h2>
-  <% date = Time.now %>
-  <%= date_field(:exp_date, :date, min: "#{date.year}-#{date.month}-#{date.day}")%>
-  <h2>CSV: </h2>
-  <%= text_field(:csv, :field) %>
-  <br>
-  <h2>O total é de R$<%= @total.round(2) %></h2>
-  <%= f.submit "Pagar" %>
+  <div>
+    <div class="confirm-labels"><%= f.label :titular, class: 'form-label' %></div>
+    <%= f.text_field :nome, class: 'form-control' %>
+  </div>
   
+  <div>
+    <div class="confirm-labels"><%= f.label :cpf, "CPF", class: 'form-label' %></div>
+    <%= f.text_field :user_id, class: 'form-control' %>
+  </div>
+  
+  <div>
+    <div class="confirm-labels"><%= f.label :numero_do_cartao, "Número do Cartão" , class: 'form-label' %></div>
+    <%= f.text_field :card_num, class: 'form-control' %>
+  </div>
+  
+  <div>
+    <div class="confirm-labels"><%= f.label :data_de_expiracao, "Data de Expiração",class: 'form-label' %></div>
+    <% date = Time.now %>
+    <% date.strftime("%d/%m/%Y") %>
+    <%= date_field(:exp_date, :date, min: "#{date.year}-#{date.month}-#{date.day}", class: "form-control")%>
+  </div>
+  
+  <div>
+    <div class="confirm-labels"><%= f.label :csv, "CSV",class: 'form-label' %></div>
+    <%= f.text_field :csv, class: 'form-control' %>
+  </div>
+  <br>
+  <h2 id="total-message">O total é R$<%= @total.round(2) %></h2>
+  <%= f.submit "Pagar", class: "btn btn-primary" %>  
 <% end %>

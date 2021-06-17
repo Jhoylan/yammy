@@ -21,6 +21,7 @@ td{
 
 body{
   background-color: white;
+  overflow: hidden;
 }
 
 // navbar when user is logged
@@ -100,6 +101,10 @@ body{
 }
 
 // menu
+#order-sended-message{
+  text-align: center;
+}
+
 #order-request-link{
   text-decoration: none;
 }
@@ -119,10 +124,11 @@ body{
 
 #minus{
   color: #FC3F26;
+  text-align: center;
 }
 
 #plus{
-  color: #10FC00;
+  color: #86B000;
 }
 
 #cart-message{
@@ -162,6 +168,7 @@ body{
   font-size: 20px;
   color: #0d6efd;
   font-weight: bold;
+  text-align: center;
 }
 
 #shipping-message{
@@ -170,4 +177,26 @@ body{
 
 #order-finalization{
   text-decoration: none;
+}
+
+// payment
+#total-message{
+  font-size: 25px;
+  color: #090380;
+  font-weight: bold;
+}
+
+//cart
+#quantity-cart{
+  text-align: center;
+}
+
+.confirm-labels{
+  font-size: 20px;
+  color: #0d6efd;
+  font-weight: bold;
+}
+
+.make-order-button{
+  text-align: center;
 }

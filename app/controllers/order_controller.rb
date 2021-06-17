@@ -5,16 +5,18 @@ class OrderController < ApplicationController
     @shipping = get_shipping
     @missing_orders_to_discount = 5 - (Order.where(open: false).size % 5)
     @discount = get_discount
-    destroy_old_orders
   end
 
   def create
+    destroy_old_orders
+
     @menu = Restaurant.find(params[:restaurant_id]).menu
     @restaurant_id = params[:restaurant_id]
     @qtts = (params[:order_qtt]).split "_"
+    @to_show_msg = true
+    
     order_info = []
     menu = @menu.split ","
-    @to_show_msg = true
     qtt_is_valid = true
 
     @qtts.each_with_index do |qtt, index|
