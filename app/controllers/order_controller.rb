@@ -93,7 +93,7 @@ class OrderController < ApplicationController
     @today_open_orders = []
 
     all_orders.each do |order|
-      @today_open_orders.push order if order.created_at.day == today
+      @today_open_orders.push order if order.created_at.day == today 
     end
   end
 

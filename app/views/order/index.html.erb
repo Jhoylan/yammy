@@ -1,40 +1,61 @@
 <h1> Pedidos de Hoje </h1>
 
 <% if @missing_orders_to_discount < 5 %>
-  <h2> Faltam <%= @missing_orders_to_discount %> pedidos para você ganhar um desconto. </h2>
+  <div class="discount-status"><h2 class="discount-status-msg"> Faltam <%= @missing_orders_to_discount %> pedidos para você ganhar um desconto. </h2></div>
 <% elsif @missing_orders_to_discount == 5 && @today_open_orders.size > 0 %>
-  <h2> Esse pedido terá 20% de desconto </h2>
+  <div class="discount-status"><h2 class="discount-status-msg"> Esse pedido terá 20% de desconto </h2></div>
 <% else %>
-  <h2> Seu próximo pedido terá desconto </h2>
+  <div class="discount-status"><h2 class="discount-status-msg"> Seu próximo pedido terá desconto </h2></div>
 <% end %>
 
 <% total = 0 %>
+<% restaurant_total = 0 %>
 
 <% @today_open_orders.each do |order| %>
-  <br>
-  <h2><%= Restaurant.find(order.restaurant.to_i).name %> do <%= Restaurant.find(order.restaurant.to_i).Shopping.name %></h2>
-  
-  <% order.order_info.each_with_index do |info, index| %>
-    <% dish = info[0] %>
-    <% price = info[1] %>
-    <% qtt = info[2] %>
-    <% total += price.to_f * qtt.to_f %>
-    <h2> Prato: <%= dish %>, Preço: <%= price %> | Quantidade: <%= qtt %>
-      <%= link_to "Excluir", "/order/#{order.id}/#{index}", data:{confirm: "Gostaria de remover esse prato?"} %>
-    </h2>
-  <% end %>
-<% end %>
+  <div class="restaurant-names-table"><h2 id="restaurant-names"><%= Restaurant.find(order.restaurant.to_i).name %> do <%= Restaurant.find(order.restaurant.to_i).Shopping.name %></h2></div>
+  <table class="table table-borderless">
+    <thead>
+      <th>Prato</th>
+      <th>Preço</th>
+      <th>Quantidade</th>
+      <th>Excluir</th>
+    </thead>
+    <tbody>
+      
+        <% order.order_info.each_with_index do |info, index| %>
+          <% dish = info[0] %>
+          <% price = info[1] %>
+          <% qtt = info[2] %>
+          <% restaurant_total += price.to_f * qtt.to_f %>
+          <% minus = "/order/#{order.id}/#{index}" %>
+          <tr>
+            <td><%= dish %></td>
+            <td><%= price %></td>
+            <td><%= qtt %></td>
+            <td class="op-button" ><a href=<%=minus%> data-confirm="Gostaria de remover esse prato?"><%= fa_icon "minus", id: "minus" %></td>
+          </tr>
+        <% end %>         
 
-<br>
+        <tr>
+          <td class="total-table" ><h2 id="total-table-text">Total</h2></td>
+          <td class="total-table"><%= restaurant_total.round(2) %></td>
+        </tr>
+
+        <% total +=  restaurant_total%>
+        <% restaurant_total = 0 %>
+    <tbody>
+  </table>
+<% end %>  
+
 <% if total > 0 %>
-  <h2> Será acrescido um frete de R$10,00 ao valor do pedido </h2>
-  <h2>O total é de R$<%= (total + @shipping).round(2) %></h2>
+  <h2 class="footer-cart-messages" id="shipping-message">Será acrescido um frete de R$10,00 ao valor do pedido</h2>
+  <h2 class="footer-cart-messages">O total é de R$<%= (total + @shipping).round(2) %></h2>
   <% if @missing_orders_to_discount == 5 %>
     <% total -= total * @discount %>
-    <h2>O total com desconto é de R$<%= (total + @shipping).round(2) %></h2>
+    <h2 class="footer-cart-messages">O total com desconto é de R$<%= (total + @shipping).round(2) %></h2>
   <% end %>
-  <div><h2><%= link_to "Finalizar Pedido(s)", "/order/confirm" %></h2></div>
+  <div><h2 class="footer-cart-messages"><%= link_to "Finalizar Pedido(s)", "/order/confirm", class: "btn btn-primary" %></h2></div>
 <% else %>
-  <h2>Você não realizou um pedido ainda.</h2>
+  <h2 class="footer-cart-messages">Você não realizou um pedido ainda.</h2>
   <h2><%= link_to "Fazer um pedido", home_index_path %></h2>
 <% end %>
