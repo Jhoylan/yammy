@@ -30,7 +30,7 @@
           <% minus = "/order/#{order.id}/#{index}" %>
           <tr>
             <td><%= dish %></td>
-            <td><%= price %></td>
+            <td>R$<%= price %></td>
             <td id="quantity-cart"><%= qtt %></td>
             <td class="op-button" id="minus-cart"><a href=<%=minus%> data-confirm="Gostaria de remover esse prato?"><%= fa_icon "minus", id: "minus" %></td>
           </tr>
@@ -38,7 +38,7 @@
 
         <tr>
           <td class="total-table" ><h2 id="total-table-text">Total</h2></td>
-          <td class="total-table"><%= restaurant_total.round(2) %></td>
+          <td class="total-table">R$<%= restaurant_total.round(2) %></td>
         </tr>
 
         <% total +=  restaurant_total%>

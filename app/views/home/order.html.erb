@@ -22,7 +22,7 @@
 
         <tr>  
           <td><%= dish_name %></td>
-          <td><%= dish_price %></td>
+          <td>R$<%= dish_price %></td>
           <td><%= @qtts[dish_number] %></td>
           <% qtts = @qtts.join("_") %>
           <% plus = "/qtt/+/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
@@ -37,7 +37,7 @@
 
       <tr>
         <td class="total-table"><h2 id="total-table-text">Total</h2></td>
-        <td class="total-table"><%= total.round(2) %></td>
+        <td class="total-table">R$<%= total.round(2) %></td>
       </tr>
   <tbody>
 </table>
