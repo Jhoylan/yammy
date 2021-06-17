@@ -2,9 +2,10 @@
 <% order_qtt = 0 %>
 
 <% if @to_show_msg %>
-  <%= @msg %>
+  <h2 id="cart-message"><%= @msg %></h2>
 <% end %>
-<table>
+
+<table class="table table-borderless">
   <thead>
     <th>Prato</th>
     <th>Preço</th>
@@ -24,16 +25,21 @@
           <td><%= dish_price %></td>
           <td><%= @qtts[dish_number] %></td>
           <% qtts = @qtts.join("_") %>
-          <td><%= link_to "Mais", "/qtt/+/#{dish_number}/#{qtts}/#{@restaurant_id}" %></td>
-          <td><%= link_to "Menos", "/qtt/-/#{dish_number}/#{qtts}/#{@restaurant_id}" %></td>
+          <% plus = "/qtt/+/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
+          <% minus = "/qtt/-/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
+          <td class="op-button"><a href=<%=plus%>><%= fa_icon "plus", id: "plus" %></a></td>
+          <td class="op-button"><a href=<%=minus%>><%= fa_icon "minus", id: "minus" %></td>
         </tr>
-        
+
         <% total += dish_price.to_f * @qtts[dish_number].to_f %>
         <% order_qtt = qtts %>
       <% end %>
-    
+
+      <tr>
+        <td class="total-table" id="total-table">Total</td>
+        <td class="total-table"><%= total.round(2) %></td>
+      </tr>
   <tbody>
 </table>
 
-<h2>O total é R$<%= total.round(2) %></h2>
-<h2> <%= link_to "Adicionar ao carrinho", "/#{@restaurant_id}/#{order_qtt}" %> </h2>
+<%= link_to "Adicionar ao carrinho", "/#{@restaurant_id}/#{order_qtt}", class: "btn btn-primary", id: "add-to-cart" %>

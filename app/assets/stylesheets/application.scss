@@ -1,9 +1,22 @@
+
 @import "bootstrap";
+@import "font-awesome";
 
 //global
 h1{
   color: #090380;
   text-align: center;
+}
+
+th{
+  color: #090380;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+td{
+  color: #0d6efd;
+  font-weight: bold;
 }
 
 body{
@@ -91,3 +104,33 @@ body{
   text-decoration: none;
 }
 
+.total-table{
+  color: #090380;
+}
+
+#total-table-text{
+  font-size: 20px;
+}
+
+.op-button{
+  text-align: center;
+}
+
+#minus{
+  color: #FC3F26;
+}
+
+#plus{
+  color: #10FC00;
+}
+
+#cart-message{
+  color: #86B000;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 9px;
+}
+
+#add-to-cart{
+  margin-left: 9px;
+}

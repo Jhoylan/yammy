@@ -69,6 +69,8 @@ gem 'draper'
 #Windows Gem
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
-#Bootstrap
+#style
 gem 'bootstrap', '~> 5.0.1'
 gem 'jquery-rails'
+gem "font-awesome-rails"
+
