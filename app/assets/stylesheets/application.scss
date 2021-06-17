@@ -1,0 +1,93 @@
+@import "bootstrap";
+
+//global
+h1{
+  color: #090380;
+  text-align: center;
+}
+
+body{
+  background-color: white;
+}
+
+// navbar when user is logged
+#home-button{
+  font-size: 20px;
+  text-decoration: none;
+  color: aliceblue;
+  margin-left: 55px;
+}
+
+#shoppings-button{
+  font-size: 20px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+#logout-button{
+  font-size: 20px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+#cart-button{
+  font-size: 20px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+#welcome-content{
+  text-align: center;
+}
+
+// navbar when user isn't logged
+#login-button{
+  font-size: 20px;
+  text-decoration: none;
+  color: aliceblue;
+  margin-left: 200px;
+}
+
+#subscribe-button{
+  font-size: 20px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+// welcome text
+#welcome-text{
+  text-align: center;
+}
+
+// login page
+#password-redefinition-link{
+  text-decoration: none;
+}
+
+#subscribe-link{
+  text-decoration: none;  
+}
+
+// home index
+.shopping-names{
+  text-decoration: none;
+}
+
+.shoppings{
+  text-align: center;  
+}
+
+// restaurant list
+.restaurant-names{
+  text-decoration: none;
+}
+
+.restaurants{
+  text-align: center;
+}
+
+// menu
+#order-request-link{
+  text-decoration: none;
+}
+

@@ -1,31 +1,39 @@
-<nav class="navigation">
-  <div class="navigation_bar">
-    <div class="navigation_buttons" id="home"><h1><%= link_to "Home", root_path %></h1></div>
-    <div class="navigation_buttons" id="shoppings"><h1><%= link_to "Lista de Shoppings", home_index_path %></h1></div>
-  </div>
-</nav>
-
 <% total = 0 %>
 <% order_qtt = 0 %>
 
 <% if @to_show_msg %>
   <%= @msg %>
 <% end %>
+<table>
+  <thead>
+    <th>Prato</th>
+    <th>Preço</th>
+    <th>Quantidade</th>
+    <th>Adicionar</th>
+    <th>Remover</th>
+  </thead>
+  <tbody>
+    
+      <% (@menu.split ",").each_with_index do |dish, dish_number| %>
+        <% temp = dish.split "/" %>
+        <% dish_name = temp[0] %>
+        <% dish_price = temp[1] %> 
 
-<% (@menu.split ",").each_with_index do |dish, dish_number| %>
-  <% temp = dish.split "/" %>
-  <% dish_name = temp[0] %>
-  <% dish_price = temp[1] %>
-  
-  <h2><%= dish_name %>: <%= dish_price %> | Quantidade: <%= @qtts[dish_number] %>
-    <% qtts = @qtts.join("_") %>
-    <%= link_to "Mais", "/qtt/+/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
-    <%= link_to "Menos", "/qtt/-/#{dish_number}/#{qtts}/#{@restaurant_id}" %>
-  </h2>
-
-  <% total += dish_price.to_f * @qtts[dish_number].to_f %>
-  <% order_qtt = qtts %>
-<% end %>
+        <tr>  
+          <td><%= dish_name %></td>
+          <td><%= dish_price %></td>
+          <td><%= @qtts[dish_number] %></td>
+          <% qtts = @qtts.join("_") %>
+          <td><%= link_to "Mais", "/qtt/+/#{dish_number}/#{qtts}/#{@restaurant_id}" %></td>
+          <td><%= link_to "Menos", "/qtt/-/#{dish_number}/#{qtts}/#{@restaurant_id}" %></td>
+        </tr>
+        
+        <% total += dish_price.to_f * @qtts[dish_number].to_f %>
+        <% order_qtt = qtts %>
+      <% end %>
+    
+  <tbody>
+</table>
 
 <h2>O total é R$<%= total.round(2) %></h2>
 <h2> <%= link_to "Adicionar ao carrinho", "/#{@restaurant_id}/#{order_qtt}" %> </h2>

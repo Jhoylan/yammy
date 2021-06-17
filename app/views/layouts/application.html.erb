@@ -11,6 +11,54 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <div class="row">
+              <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><h1><%= link_to "Home", root_path, class: "btn btn-primary", id: "home-button" %></h1></li>
+                    <li class="nav-item"><h1><%= link_to "Lista de Shoppings", home_index_path, class: "btn btn-primary", id: "shoppings-button" %></h1></li>
+                    <li class="nav-item"><h1><%= link_to "Ver Carrinho", "/order/index", class: "btn btn-primary", id: "cart-button" %></h1></li>
+                    <li class="nav-item"><h1><%= link_to "Sair do sistema", destroy_user_session_path, method: :delete, class: "btn btn-primary", id: "logout-button" %></h1></li>
+                  </ul>
+                </div> 
+              </div>   
+            </div>
+            <div class="col-3"></div>
+          </div>
+        </nav>
+      <% elsif user_signed_in? == false && request.url == "http://localhost:3000/" %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <div class="row">
+              <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><h1><%= link_to "Login", home_index_path,class: "btn btn-primary", id: "login-button" %></h1></li>
+                    <li class="nav-item"><h1><%= link_to "Cadastro", new_user_registration_path, class: "btn btn-primary", id: "subscribe-button" %></h1></li>
+                  </ul>
+                </div> 
+              </div>   
+            </div>
+            <div class="col-3"></div>
+          </div>
+        </nav>
+      <% end %>
+    </header>
+
+    <main>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <%= yield %>
+        </div>
+        <div class="col-3"></div>
+      <div class="row">
+    </main>
   </body>
 </html>

@@ -1,17 +1,8 @@
-<nav class="navigation">
-  <div class="navigation_bar">
-    <div class="navigation_buttons" id="home"><h1><%= link_to "Home", root_path %></h1></div>
-    <div class="navigation_buttons" id="shoppings"><h1><%= link_to "Lista de Shoppings", home_index_path %></h1></div>
-    <div class="navigation_buttons" id="logout"><h1><%= link_to "Sair do sistema", destroy_user_session_path, method: :delete %></h1></div>
-    <div class="navigation_buttons" id="cart"><h1><%= link_to "Ver Carrinho", "/order/index"%></h1></div>
-  </div>
-</nav>
-
 <div>
   <h1>Shoppings</h1>
   <% @shoppings.each do |shopping| %>
-    <div class="shopping">
-      <p><h2><%= link_to shopping.name, "/list/#{shopping.id}" %></h2></p>
+    <div class="shoppings">
+      <h2><%= link_to shopping.name, "/list/#{shopping.id}", class: "shopping-names" %></h2>
     </div>
   <% end %>
 </div>
