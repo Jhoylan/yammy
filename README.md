@@ -24,6 +24,5 @@ Things you may want to cover:
 * Débitos Técnicos
 <ul>
   <li> Histórico de pedidos </li>
-  <li> Ajustar alinhamentos de imagens </li>
   <li> App: Confirmação entre delivery e presencial </li>
 </ul>
