@@ -27,7 +27,13 @@
     <div class="confirm-labels"><%= f.label :csv, "CSV",class: 'form-label' %></div>
     <%= f.text_field :csv, class: 'form-control' %>
   </div>
-  <br>
-  <h2 id="total-message">O total é R$<%= @total.round(2) %></h2>
-  <%= f.submit "Pagar", class: "btn btn-primary" %>  
+
+  <div>
+    <div class="confirm-labels"><%= f.label :cellphone, "Número para contato", class: 'form-label' %></div>
+    <%= f.text_field :cellphone, class: 'form-control' %>
+  </div>
+  <div>
+    <h2 id="total-message">O total é R$<%= @total.round(2) %></h2>
+    <%= f.submit "Pagar", class: "btn btn-primary" %>  
+  </div>
 <% end %>
